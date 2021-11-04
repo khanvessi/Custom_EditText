@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CustomEditText</string>
+    <string name="form_is_valid">Form is valid</string>
+    <string name="edt_hint_email">Enter Your Email</string>
+    <string name="edt_title_email">Email</string>
+    <string name="edt_hint_password">Enter your password</string>
+    <string name="edt_title_password">Password</string>
+    <string name="edt_hint_about">Write about yourself</string>
+    <string name="edt_title_about">Password</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="about">About</string>
+
+</resources>

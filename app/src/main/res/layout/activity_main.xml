@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="MainActivityBinding">
+
+        <variable
+            name="viewModel"
+            type="com.example.customedittext.main.MainActivityViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="formMessage"
+            type="com.example.customedittext.main.MainActivityViewModel.FormMessage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/design_default_color_primary"
+        tools:context=".main.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imglayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/color_main_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vector" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainlayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_bottom_sheet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imglayout">
+
+
+            <com.example.customedittext.CustomEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                app:custom_component_border_width="6"
+                app:custom_component_border_color="#807F7D"
+                app:custom_component_border_error_color="@color/color_error"
+                app:custom_component_editText_hint="@string/edt_hint_email"
+                app:custom_component_is_mandatory="true"
+                app:custom_component_title="@string/edt_title_email"
+                app:custom_component_title_error_color="@color/color_error"
+                app:errorTextValue="@{formMessage.email}"
+                app:isErrorEnable="@{formMessage.isEmailError}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textValue="@={viewModel.email}" />
+
+
+            <com.example.customedittext.CustomEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                app:custom_component_border_width="6"
+                app:custom_component_border_color="#807F7D"
+                app:custom_component_border_error_color="@color/color_error"
+                app:custom_component_editText_hint="@string/edt_hint_password"
+                app:custom_component_error_text_bg_color="@android:color/white"
+                app:custom_component_is_mandatory="false"
+                app:custom_component_title="@string/edt_title_password"
+                app:custom_component_title_error_color="@color/color_error"
+                app:errorTextValue="@{formMessage.password}"
+                app:isErrorEnable="@{formMessage.isPasswordError}"
+                app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+                app:layout_constraintStart_toStartOf="@+id/edtEmail"
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+                app:textValue="@={viewModel.password}" />
+
+            <com.example.customedittext.CustomEditText
+                android:id="@+id/edtAbout"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:inputType="textMultiLine|textCapSentences"
+                app:custom_component_border_color="#807F7D"
+                app:custom_component_border_width="6"
+                app:custom_component_border_error_color="@color/color_error"
+                app:custom_component_editText_hint="@string/edt_hint_about"
+                app:custom_component_error_text_bg_color="@android:color/white"
+                app:custom_component_maxLength="25"
+                app:custom_component_maxline="3"
+                app:custom_component_minline="3"
+                app:custom_component_title="@string/about"
+                app:custom_component_title_bg_color="@android:color/white"
+                app:custom_component_title_error_color="@color/color_error"
+                app:errorTextValue="@{formMessage.about}"
+                app:isErrorEnable="@{formMessage.isAboutError}"
+                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                app:layout_constraintStart_toStartOf="@+id/edtPassword"
+                app:layout_constraintTop_toBottomOf="@+id/edtPassword"
+                app:textValue="@={viewModel.about}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:onClick="@{(v)->viewModel.onLoginButtonClick(v)}"
+                android:text="@string/btn_signup"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+                app:layout_constraintStart_toStartOf="@+id/edtEmail"
+                app:layout_constraintTop_toBottomOf="@+id/edtAbout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
